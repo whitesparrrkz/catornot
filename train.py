@@ -44,7 +44,7 @@ def main():
 
     for images, labels in train_dataloader:
         break
-    print(images.shape, " ", labels.shape)
+    print(images.shape, ' ', labels.shape)
 
     model = CatornotClassifier(2)
     example_out = model(images)
@@ -54,7 +54,7 @@ def main():
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
     # use gpu
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     print(device)
     model.to(device)
 
@@ -89,7 +89,7 @@ def main():
         running_loss = 0.0
 
         with torch.no_grad():
-            for images, labels in tqdm(test_dataloader, desc='training'):
+            for images, labels in tqdm(test_dataloader, desc='testing'):
                 images = images.to(device)
                 labels = labels.to(device)
 
@@ -101,9 +101,9 @@ def main():
         val_loss = running_loss / len(test_dataloader.dataset)
         val_losses.append(val_loss)
 
-        print(f"Epoch {epoch+1}/{num_epochs} - Train loss: {train_loss}, Validation loss: {val_loss}")
+        print(f'Epoch {epoch+1}/{num_epochs} - Train loss: {train_loss}, Validation loss: {val_loss}')
 
-    torch.save(model.state_dict(), "catornot_model_weights.pth")
+    torch.save(model.state_dict(), 'catornot_model_weights.pth')
 
 
 if __name__ == '__main__':
